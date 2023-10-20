@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap');
+body{
+	margin: 0;
+	padding: 0;
+	background: radial-gradient(#f3f1f3,#9fc7e2,#50afe6);
+	height: 100vh;
+	overflow: hidden;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+.center{
+	width: 430px;
+	top: 200px;
+	left: 36%;
+	position: relative;
+}
+.center .header{
+	font-size: 28px;
+	font-weight: bold;
+	color: white;
+	padding: 25px 0 30px 25px;
+	background: #34d8eb;
+	border-bottom: 1px solid  #f2f4f7;
+	border-radius: 5px 5px 0 0;
+}
+.center form{
+	position: absolute;
+	background: white;
+	width: 100%;
+	padding: 50px 10px 0 30px;
+	box-sizing: border-box;
+	border: 1px solid #f5f8fa;
+	border-radius: 0 0 5px 5px;
+}
+form input{
+	height: 50px;
+	width: 90%;
+	padding: 0 10px;
+	border-radius: 3px;
+	border: 1px solid silver;
+	font-size: 18px;
+	outline: none;
+}
+form input[type="password"]{
+	margin-top: 20px;
+}
+form i{
+	position: absolute;
+	font-size: 25px;
+	color: grey;
+	margin: 15px 0 0 -45px;
+}
+i.fa-lock{
+	margin-top: 35px;
+}
+form input[type="submit"]{
+	margin-top: 40px;
+	margin-bottom: 40px;
+	width: 130px;
+	height: 45px;
+	color: white;
+	cursor: pointer;
+	line-height: 45px;
+	border-radius: 45px;
+	border-radius: 5px;
+	background: #34d8eb;
+}
+form input[type="submit"]:hover{
+	background:  #2890e6;
+	transition: .5s;
+}
+form a{
+	text-decoration: none;
+	font-size: 18px;
+	color: #34d8eb;
+	padding: 0 0 0 20px;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags must come first in the head; any other head content must come after these tags -->
+    <title>Best Actor Contest</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- auto refresh code (onload = "JavaScript:AutoRefresh(5000);")-->
+    <script type = "text/JavaScript">
+      
+         function AutoRefresh( t ) {
+            setTimeout("location.reload(true);", t);
+         }
+      
+   </script>
+  </head>
+  <body >
+    <div class="container" style="width: 700px">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h1 class="text-center">Best Actor Contest</h1>
+          <hr/>
+          <br/>
+        </div>
+      </div>
+  <form onsubmit="App.registerVoter(); return false;">
+      <div class="form-group">
+        <label>Voter Account</label>
+        <input type="text" class="form-control" id="accadd" placeholder="Address">
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+      <form onsubmit="App.addCandidate(); return false;">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Name">
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+</form>
+<hr>
+<button type="submit" onclick="App.changeState()" class="btn btn-primary">Change phase</button>
+
+      <div id="loader" class="row">
+        <!-- PETS LOAD HERE -->
+        <p class="text-center">Loading.... </p>
+      </div>
+
+      <div id="content">
+        <table class="table">
+          <thead>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Votes</th>
+          </thead>
+          <tbody id="contestantsResults">
+
+          </tbody>
+          <hr/>
+          <p id="accountAddress" class="text-center"></p>
+        </table>
+
+        <form onsubmit="App.castVote(); return false;">
+          <div class="form-group">
+            <label for="contestantSelect">Select Contestant</label>
+            <select class="select-control" id="contestantSelect"></select>
+          </div>
+          <button type="submit" class="btn btn-primary">Cast your vote</button>
+        </form>
+      </div>
+ </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

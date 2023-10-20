@@ -1,0 +1,118 @@
+body{
+    font-family: arial;   
+}
+
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #46a5f2;
+    overflow-x: hidden;
+    padding-top: 20px;
+    /* border: black;
+    border-width: 1px; */
+}
+.user-icon{
+    margin-top: 35%;
+    margin-bottom: 17%;
+}
+.user-icon-image{
+    margin-left: 34%;
+    
+}
+.user-icon-name{
+    padding-top: 10px;
+    text-align: center !important;
+    color: white;
+}
+.avatar{
+    vertical-align: middle;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.toggle {
+    margin-top: 20%;
+}
+
+/* .sidenav a.active{
+    background-color: rgb(239, 243, 221);
+    color: rgb(26, 38, 78);
+} */
+
+.sidenav a{
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+}
+
+.sidenav a:hover{
+    background-color: rgb(239, 243, 221);
+    color: #46a5f2;
+}
+
+
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  /* end of sidebar */
+
+.main-content {
+    margin-left: 270px;
+    margin-top: 10px;
+    padding: 0px 10px;
+}
+ 
+h3 {
+      text-align: center;
+}
+.parties{
+    padding-top: 70px;
+    padding-left: 30px;
+}
+.card{
+    
+    /* display: inline-block; */
+    width: 280px !important;
+    height: 300px !important; 
+    margin-top: 8px; 
+    box-shadow: 0px 4px 8px 0px gray;
+    transition: 0.3s;
+}
+.card:hover{
+    box-shadow: 0px 9px 18px 0px gray;
+}
+
+.container{
+    padding: 2px 16px;
+}
+
+.btn{
+    background-color: #46a5f2 !important;
+    color: white;
+
+}
+.btn:hover{
+    background-color: rgb(239, 243, 221) !important;
+    color: #46a5f2 !important;
+    transition: .4s !important;
+    cursor: pointer !important;
+  } 
+
+.modal-title{
+    text-align: center !important;
+}  
+
+/* img{
+    /* object-fit: contain !important; 
+    width: 100%;
+    height: 100%;
+} */
