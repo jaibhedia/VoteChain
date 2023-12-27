@@ -3,7 +3,7 @@ var mysql = require("mysql");
 var conn = mysql.createConnection({
   host: "localhost", // Replace with your actual host name
   user: "root", // Replace with your actual database username
-  password: "Bhakwaas@me1", // Replace with your actual database password
+  password: "Bhakwass@me1", // Replace with your actual database password
   database: "adhar", // Replace with your actual database name
 });
 
