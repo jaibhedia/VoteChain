@@ -1,0 +1,205 @@
+body {
+  font-family: "monospace", sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #263238; /* Dark blue-grey background */
+  color: #fff; /* White text */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  z-index: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  transition: width 0.3s ease; /* Smooth transition for width */
+}
+
+.sidebar-wrapper {
+  padding-top: 20px;
+}
+
+.sidebar ul.nav {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul.nav li {
+  padding: 15px;
+  text-align: center;
+}
+
+.sidebar ul.nav li.active {
+  background-color: #455a64; /* Darker blue-grey for active item */
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.main-panel {
+  margin-left: 250px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.main-panel .card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.main-panel .card-header-info {
+  background-color: #2196f3; /* Material blue for card headers */
+  color: #fff;
+}
+
+.main-panel .card-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.main-panel .content {
+  padding: 15px;
+}
+
+.card-header {
+  padding: 18px;
+}
+
+.card-body {
+  padding: 20px;
+}
+.card-body ul li {
+  padding: 13px;
+}
+.secondul ul li {
+  padding: 13px;
+}
+.secondol li {
+  padding: 13px;
+}
+.custom-form-group {
+  margin-bottom: 20px;
+}
+
+.custom-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #555;
+}
+
+.custom-input:focus {
+  border-color: #2196f3; /* Highlight border color on focus */
+  outline: none;
+}
+.custom-btn {
+  background-color: #2196f3; /* Button background color */
+  color: #fff; /* Button text color */
+  padding: 12px; /* Adjust padding for better appearance */
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+.custom-btn:hover {
+  background-color: #0d8bf0; /* Change background color on hover */
+}
+
+.content {
+  margin-top: 50px;
+  width: 1000px;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  color: #222;
+}
+
+.card-header-info {
+  background-color: #3f51b5; /* Adjust the color as needed */
+  color: #fff;
+}
+
+#not h1 {
+  color: #f44336; /* Red color for emphasis */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd; /* Add a border between rows */
+}
+
+/* .table th {
+  background-color: #e0e0e0; /* Light gray background for headers */
+*/ #accountAddress {
+  margin-top: 20px;
+  color: #555;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.main-panel.dark-mode {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+.card-body.dark-mode {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+.card-header.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+.card-body.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+#dark-mode-toggle {
+  cursor: pointer;
+}
+
+#dark-mode-toggle .material-icons {
+  color: #fff;
+}
+
+body.dark-mode #dark-mode-toggle .material-icons {
+  color: #ffeb3b; /* Material yellow for dark mode toggle icon */
+}

@@ -15,18 +15,14 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+    <!-- <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" /> -->
+    <link href="../assets/css/style.css" rel="stylesheet"/>
 </head>
 
 <body>
     <!-- additional -->
     <div class="wrapper ">
-        <div class="sidebar" data-color="azure" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
-          <!--
-            Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-    
-            Tip 2: you can also add an image using data-image tag
-        -->
+        <div class="sidebar">
             <div class="sidebar-wrapper">
               <ul class="nav" style="margin-top: 50px;">
                 <li class="nav-item">
@@ -53,24 +49,24 @@
                     <p>Result</p>
                   </a>
                 </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="/changePhase">
-                    <i class="material-icons">content_paste</i>
-                    <p>Change Phase</p>
-                  </a>
-                </li> -->
                 <li class="nav-item ">
                   <a class="nav-link" href="/logout">
                     <i class="material-icons">logout</i>
                     <p>LogOut</p>
                   </a>
                 </li>
+                <li class="nav-item" id="dark-mode-toggle">
+                  <a class="nav-link">
+                    <i class="material-icons">brightness_6</i>
+                    <p>Dark Mode</p>
+                  </a>
+                </li>
               </ul>
             </div>
         </div>
-        <div class="main-panel">
+        <div class="main-panel" id="main-panel">
           <!-- Navbar -->
-          <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+          <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " style="display: none;">
             <div class="container-fluid">
               <div class="navbar-wrapper">
                 <a class="navbar-brand" href="javascript:;"></a>
@@ -88,39 +84,40 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="card">
-                    <div class="card-header card-header-info">
+                    <div class="card-header card-header-info" id="card-header">
                       <h4 class="card-title">REGISTERATION</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body"  id="card-body">
                       <!-- form  -->
                       <form action='/registerdata' method="post">
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         <div class="row">
-                          <div class="col">
-                            <div class="form-outline">
-                                <br/>
-                              <input type="text" id="name" class="form-control" name='aadharno' required/>
-                              <label class="form-label" for="form3Example1">Aadhar Number</label>
-                            </div>
-                          </div>
-                          </div>
-                          <div class="row">
-                          <div class="col">
-                            <div class="form-outline">
-                                <br/>
-                              <input type="text" id="party" class="form-control" name='account_address' required/>
-                              <label class="form-label" for="form3Example2">Account Address</label>
-                              <br>
+                          <div class="col-md-6">
+                            <div class="custom-form-group">
+                              <label for="aadharNumber" class="custom-label">Aadhar Number</label>
+                              <input type="text" id="aadharNumber" class="custom-input" name="aadharno" required>
                             </div>
                           </div>
                         </div>
+                        
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="custom-form-group">
+                              <label for="accountAddress" class="custom-label">Account Address</label>
+                              <div class="custom-input-container">
+                                <input type="text" id="accountAddress" class="custom-input" name="account_address" required>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
                         <br>
-                        <button type="submit"  class="btn btn-info btn-block mb-4">Register</button>
+                        <button type="submit" class="custom-btn btn btn-info btn-block">Register</button>
                         </div>
                       </form>
                     </div>
                     <div  id="loader">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="display: none;">
                       </button>
                       <div>
                         <%=(typeof alertMsg!='undefined')? alertMsg:''%>
@@ -178,6 +175,34 @@
 <script src="../assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 
 <script>
+ document.addEventListener("DOMContentLoaded", function () {
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+  const body = document.body;
+  const mainpanel = document.getElementById("main-panel");
+  const cardheader = document.getElementById("card-header");
+  const cardBody = document.getElementById("card-body");
+
+  const isDarkMode = localStorage.getItem("darkMode") === "true";
+
+  setTheme(isDarkMode);
+
+  darkModeToggle.addEventListener("click", function () {
+ 
+    const newDarkModeState = !body.classList.contains("dark-mode");
+    
+    localStorage.setItem("darkMode", newDarkModeState);
+
+    setTheme(newDarkModeState);
+  });
+
+  function setTheme(isDarkMode) {
+    body.classList.toggle("dark-mode", isDarkMode);
+    cardheader.classList.toggle("dark-mode", isDarkMode);
+    mainpanel.classList.toggle("dark-mode", isDarkMode);
+    cardBody.classList.toggle("dark-mode", isDarkMode);
+  }
+});
+
   $(document).ready(function() {
     $().ready(function() {
       $sidebar = $('.sidebar');

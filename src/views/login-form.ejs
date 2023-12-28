@@ -12,46 +12,35 @@
   </head>
   <body>
     <div class="container">
-      <div class="forms-container">
-        <div class="signin-signup">
-          <form method="post" action="/login" >
-            <h2 class="title">Sign in</h2>
-
-            <%=(typeof alertMsg!='undefined')? alertMsg:''%>
-
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Email Address" name="email_address" required/>
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" name="password" required />
-            </div>
-            <input type="submit" value="Login" class="btn solid" />
-           
-            
-          </form>   
-          
-        </div>
+      <div class="split left">
+        <h3>New here ?</h3>
+        <p>If you haven't signed up , What are you waiting for ?</p>
+        <a href="/register" class="btn">Sign up </a>
       </div>
-
-      <div class="panels-container">
-        <div class="panel left-panel">
-          <div class="content">
-            <h3>New here ?</h3>
-            <p>
-              If you haven't signed up , What are you waiting for ?
-            </p>
-            <a href="/register"><button class="btn transparent" id="sign-up-btn">
-              Sign up
-            </button>
-            </a>
+      <div class="split right">
+        <form method="post" action="/login">
+          <h2 class="title">Sign in</h2>
+          <%=(typeof alertMsg!='undefined')? alertMsg:''%>
+          <div class="input-field">
+            <input
+              type="text"
+              placeholder="Email Address"
+              name="email_address"
+              required
+            />
           </div>
-          <img src="img/ev.png" class="image" alt="" />
-        </div>
+          <div class="input-field">
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              required
+            />
+          </div>
+          <input type="submit" value="Login" />
+        </form>
       </div>
     </div>
-
-    <script></script>
+    <script src="../js/script.js"></script>
   </body>
 </html>
