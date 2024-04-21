@@ -5,7 +5,7 @@
 NPB_VOTE_WEB3 is a blockchain-based E-Voting system that leverages web technologies and the Ethereum blockchain. The project is built using a tech stack that includes JavaScript, CSS, SCSS, HTML, EJS, and Solidity.
 
 
-Check this video for the details: https://youtu.be/qKsu3-Jkas0?feature=shared
+Check this video for the details: [https://youtu.be/qKsu3-Jkas0?feature=shared](https://youtu.be/HMHsHCvfaNw)
 
 ## Features
 
