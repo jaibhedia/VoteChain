@@ -1,4 +1,4 @@
-# NPB_VOTE_WEB3
+# VoteChain
 
 ## About
 
