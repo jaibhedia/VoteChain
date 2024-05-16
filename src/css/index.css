@@ -61,6 +61,7 @@ p {
   text-transform: uppercase;
   width: 15rem;
   padding: 1.5rem;
+  border-radius: 2rem;
 }
 
 .split.left .btn:hover {
@@ -85,11 +86,15 @@ p {
   width: 50%;
   height: 100%;
   overflow: hidden;
+  border: 5px black solid;
+}
+.split p {
+  font-weight: 600;
 }
 
 .split.left {
   left: 0;
-  background: url("https://i.pinimg.com/236x/6a/8d/dd/6a8ddd4cdd656d8f9bd456dd83728ed6.jpg")
+  background: url("https://cdn.pixabay.com/photo/2016/10/30/20/22/astronaut-1784245_1280.jpg")
     no-repeat center / cover;
 }
 
@@ -103,7 +108,7 @@ p {
 
 .split.right {
   right: 0;
-  background: url("https://i.pinimg.com/236x/57/9f/98/579f98a793f2674542e47267c55b90a6.jpg")
+  background: url("https://cdn.pixabay.com/photo/2014/12/27/16/38/planet-581239_1280.jpg")
     no-repeat center / cover;
 }
 
