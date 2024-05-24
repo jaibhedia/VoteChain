@@ -8,6 +8,8 @@
   --hover-width: 75%;
   --minimize-width: 25%;
   --transition-speed: 1s;
+  --default-font-size: 25px;
+  --minimized-font-size: 12px;
 }
 
 * {
@@ -30,12 +32,13 @@ h1 {
   transform: translateX(-50%);
   white-space: nowrap;
 }
+
 p {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 500px;
-  font-size: 25px;
+  font-size: var(--default-font-size);
   position: absolute;
   padding: 8px;
   left: 50%;
@@ -44,7 +47,9 @@ p {
   transform: translateX(-50%);
   white-space: nowrap;
   color: rgba(255, 255, 255, 0.5);
+  transition: font-size var(--transition-speed) ease-in-out;
 }
+
 .btn {
   color: #fff;
   position: absolute;
@@ -136,6 +141,16 @@ p {
 
 .hover-right .left {
   width: var(--minimize-width);
+}
+
+.hover-left .right p,
+.hover-right .left p {
+  font-size: var(--minimized-font-size);
+}
+
+.split.left:hover p,
+.split.right:hover p {
+  font-size: var(--default-font-size);
 }
 
 @media (max-width: 800px) {
