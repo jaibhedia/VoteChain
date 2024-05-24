@@ -11,41 +11,90 @@
     <title>Sign in & Sign up Form</title>
   </head>
   <body>
-    <div class="container">
-      <div class="split left">
-        <form method="post" action="register">
-          <h2 class="title">Sign up</h2>
-          <p><%=(typeof alertMsg!='undefined')? alertMsg:''%></p>
-          <div class="input-field">
-            <input type="text" placeholder="Name" name="first_name" required />
-          </div>
-          <div class="input-field">
+    <section id="login_signUpForm">
+      <div
+        class="container"
+        id="container"
+      >
+        <div class="form-container sign-up">
+          <div id="form">
+            <div id="Applogo">
+              <img src="https://cdn-icons-png.flaticon.com/128/33/33308.png" alt="logo" />
+            </div>
+            <h1>Create Account</h1>
             <input
+              id="sign-up-name"
+              type="text"
+              placeholder="Name"
+            />
+            <input
+            id="sign-up-email"
               type="email"
               placeholder="Email"
-              name="email_address"
-              required
             />
-          </div>
-          <div class="input-field">
-            <input type="password" placeholder="Password" name="password" />
-          </div>
-          <div class="input-field">
             <input
+            id="sign-up-pass"
               type="password"
-              placeholder="ConfirmPassword"
-              name="confirm_password"
+              placeholder="Password"
             />
+            <p>
+              Already have a Account?
+              <span id="login2"> Sign In</span>
+            </p>
+            <p id="signup_error"></p>
+            <button id="user_signup">Sign Up</button>
           </div>
-          <input type="submit" value="Sign up" />
-        </form>
+        </div>
+        <div class="form-container sign-in">
+          <div id="form">
+            <div id="Applogo">
+              <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="logo" />
+            </div>
+            <h1>Sign In</h1>
+            <input
+              id="sign-in-email"
+              type="email"
+              placeholder="Email"
+            />
+            <input
+            id="sign-in-pass"
+              type="password"
+              placeholder="Password"
+            />
+            <p>
+              Don't have a Account?<span id="register2"> Sign Up</span>
+            </p>
+            <p id="singin_error"></p>
+            <button id="user_signin">Sign In</button>
+          </div>
+        </div>
+        <div class="toggle-container">
+          <div class="toggle">
+            <div class="toggle-panel toggle-left">
+              <h1>Welcome Back!</h1>
+              <p>
+                Please sign in to access your account, then click the 'Sign In'
+                button to proceed.
+              </p>
+              <button class="hidden" id="login" >
+                Sign In
+              </button>
+            </div>
+            <div class="toggle-panel toggle-right">
+              <h1>Hello, Friend!</h1>
+              <p>
+                Ready to get started? Click 'Sign Up' to create your account and
+                unlock all the features.
+              </p>
+              <button class="hidden" id="register" >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="split right">
-        <h3>One of us?</h3>
-        <p>If you have already signed up , that's great !! Please LOGIN</p>
-        <a href="/login" class="btn">Login </a>
-      </div>
-    </div>
-    <script src="../js/script.js"></script>
+    </section>
+
+       <script src="../js/script.js"></script>
   </body>
 </html>
