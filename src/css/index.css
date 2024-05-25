@@ -94,8 +94,12 @@ p {
 
 .split.left {
   left: 0;
-  background: url("https://cdn.pixabay.com/photo/2016/10/30/20/22/astronaut-1784245_1280.jpg")
-    no-repeat center / cover;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    0deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
 }
 
 .split.left::before {
@@ -108,8 +112,13 @@ p {
 
 .split.right {
   right: 0;
-  background: url("https://cdn.pixabay.com/photo/2014/12/27/16/38/planet-581239_1280.jpg")
-    no-repeat center / cover;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 
 .split.right::before {
