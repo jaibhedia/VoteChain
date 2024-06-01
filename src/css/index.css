@@ -121,6 +121,7 @@ p {
 
 .split.left {
   left: 0;
+  background-image: repeating-linear-gradient();
   background: url("https://i.pinimg.com/236x/6a/8d/dd/6a8ddd4cdd656d8f9bd456dd83728ed6.jpg")
     no-repeat center / cover;
 }
