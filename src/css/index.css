@@ -67,13 +67,33 @@ p {
   width: 15rem;
   padding: 1.5rem;
 }
+.btn:hover {
+  background-color: aquamarine;
+  color: #ec0c0c;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  top: 40%;
+  transform: translateX(-50%);
+  border: #fff solid 0.2rem;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 15rem;
+  padding: 1.5rem;
+}
 
 .split.left .btn:hover {
-  background-color: var(--left-btn-hover-color);
+  background-color:rgb(8, 173, 243);
   border-color: var(--left-btn-hover-color);
 }
 
 .split.right .btn:hover {
+  background-image: repeating-linear-gradient();
+  background-color: aqua;
   background-color: var(--right-btn-hover-color);
   border-color: var(--right-btn-hover-color);
 }
@@ -86,6 +106,13 @@ p {
 }
 
 .split {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+.split:hover {
+  background-color: #333;
   position: absolute;
   width: 50%;
   height: 100%;
