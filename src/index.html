@@ -1,32 +1,156 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Block-Vote</title>
-    <link rel="icon" type="image/x-icon" href="img/favicon.png">
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <div class="split left">
-        <a href="/adlogin" class="btn">ADMIN-LOGIN</a>
-        <p>
-          Welcome to the Blockchain Voting Admin Portal.<br />
-          Ensure the integrity of the voting process and manage<br />
-          voting transactions securely.
-        </p>
-      </div>
-      <div class="split right">
-        <a href="/register" class="btn">USER-LOGIN</a>
-        <p>
-          Join our community! Register now and<br />
-          explore exciting features.
-        </p>
-      </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <style>
+    /* Reset default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url(https://images.pond5.com/election-background-political-voting-inscription-footage-266888646_iconl.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #f0f0f0;
+}
+
+.main {
+    background-color: rgba(0, 7, 47, 0.8); /* Adjusted background color */
+    border: 2px solid white;
+    border-radius: 20px;
+    color: #fff; /* Adjusted text color to contrast with background */
+    padding: 40px;
+    margin: 134px auto 0; /* Adjusted margin for vertical centering */
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.main h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.main p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.login {
+    background-color: rgba(0, 7, 47, 0.8); 
+    border: 2px solid white;
+    border-radius: 20px;
+    color: white;
+    padding: 40px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.login h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.login a {
+    display: block;
+    margin: 20px auto;
+    padding: 15px 40px;
+    background-color: #692a58; /* Default background color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.login a:hover {
+    background-color:  #2196F3; /* Darker shade for hover effect */
+}
+
+
+  </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- <img src="../../img/11.jpg" alt="" height="100"  -->
+            <h1>SECURE YOUR VOTE!</h1>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Services</li>
+                <!-- <li>Contact us</li> -->
+            </ul>
+        </nav>
+    </header>
+    <div class="main">
+        <h1>Empower Your Vote</h1>
+        <p>Welcome to the future of voting! Our blockchain-based voting portal is here to shake up the traditional voting process and bring transparency, integrity, and accessibility to elections like never before. <br>
+
+            Say goodbye to the old ways of counting votes. With our platform, every vote is securely recorded and accurately counted, ensuring that your voice is heard loud and clear. <br>
+            
+            Join us in revolutionizing democracy and making every vote count towards a brighter future for all.</p>
+    </div>
+    <div class="login">
+        <h1>Please Select Your Platform</h1>
+        <a href="/adlogin">ADMIN-LOGIN</a>
+        <a href="/register">USER-LOGIN</a>
     </div>
     <script src="js/script.js"></script>
-  </body>
+</body>
 </html>
