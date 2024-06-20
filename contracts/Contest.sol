@@ -1,8 +1,8 @@
 pragma solidity 0.5.16;
 
-contract Contest{
+contract Contest {
 	
-	struct Contestant{
+	struct Contestant {
 		uint id;
 		string name;
 		uint voteCount;
@@ -11,59 +11,74 @@ contract Contest{
 		string qualification;
 	}
 
-	struct Voter{
+	struct Voter {
 		bool hasVoted;
 		uint vote;
 		bool isRegistered;
 	}
 
 	address admin;
-	mapping(uint => Contestant) public contestants; 
-   // mapping(address => bool) public voters;
-    mapping(address => Voter) public voters;
+	mapping(uint => Contestant) public contestants;
+	mapping(address => Voter) public voters;
 	uint public contestantsCount;
-	// uint public counter;
-	enum PHASE{reg, voting , done}
+	enum PHASE { reg, voting, done }
 	PHASE public state;
 
-	modifier onlyAdmin(){
-		require(msg.sender==admin);
+	modifier onlyAdmin() {
+		require(msg.sender == admin, "Only admin can perform this action");
 		_;
 	}
 	
-	modifier validState(PHASE x){
-	    require(state==x);
+	modifier validState(PHASE x) {
+	    require(state == x, "Invalid phase for this action");
 	    _;
 	}
 
-	constructor() public{
-		admin=msg.sender;
-        state=PHASE.reg;
-		// counter = 0;
+	event ContestantAdded(uint id, string name);
+	event VoterRegistered(address voter);
+	event Voted(address voter, uint contestantId);
 
+	constructor() public {
+		admin = msg.sender;
+		state = PHASE.reg;
 	}
 
-    function changeState(PHASE x) onlyAdmin public{
-		require(x > state);
+    function changeState(PHASE x) public onlyAdmin {
+		require(uint(x) == uint(state) + 1, "Invalid state transition");
         state = x;
     }
 
-	function addContestant(string memory _name , string memory _party , uint _age , string memory _qualification) public onlyAdmin validState(PHASE.reg){
+	function addContestant(string memory _name, string memory _party, uint _age, string memory _qualification) public onlyAdmin validState(PHASE.reg) {
 		contestantsCount++;
-		contestants[contestantsCount]=Contestant(contestantsCount,_name,0,_party,_age,_qualification);
+		contestants[contestantsCount] = Contestant(contestantsCount, _name, 0, _party, _age, _qualification);
+		emit ContestantAdded(contestantsCount, _name);
 	}
 
-	function voterRegisteration(address user) public onlyAdmin validState(PHASE.reg){
-		voters[user].isRegistered=true;
+	function removeContestant(uint _id) public onlyAdmin validState(PHASE.reg) {
+	    delete contestants[_id];
 	}
 
-	function vote(uint _contestantId) public validState(PHASE.voting){
-        
-		require(voters[msg.sender].isRegistered);
-		require(!voters[msg.sender].hasVoted);
-        require(_contestantId > 0 && _contestantId<=contestantsCount);
+	function voterRegisteration(address user) public onlyAdmin validState(PHASE.reg) {
+		voters[user].isRegistered = true;
+		emit VoterRegistered(user);
+	}
+
+	function deregisterVoter(address user) public onlyAdmin validState(PHASE.reg) {
+	    delete voters[user];
+	}
+
+	function vote(uint _contestantId) public validState(PHASE.voting) {
+		require(voters[msg.sender].isRegistered, "Voter is not registered");
+		require(!voters[msg.sender].hasVoted, "Voter has already voted");
+        require(_contestantId > 0 && _contestantId <= contestantsCount, "Invalid contestant ID");
 		contestants[_contestantId].voteCount++;
-		voters[msg.sender].hasVoted=true;
-		voters[msg.sender].vote=_contestantId;
+		voters[msg.sender].hasVoted = true;
+		voters[msg.sender].vote = _contestantId;
+		emit Voted(msg.sender, _contestantId);
+	}
+
+	function getContestant(uint _id) public view returns (uint, string memory, uint, string memory, uint, string memory) {
+	    Contestant memory c = contestants[_id];
+	    return (c.id, c.name, c.voteCount, c.party, c.age, c.qualification);
 	}
 }
