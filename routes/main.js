@@ -1,145 +1,54 @@
 var express = require('express');
 var router = express.Router();
-/* GET users listing. */
-// const express=require('express');
-// const app=express()
-var conn=require('../database');
+var conn = require('../database');
+var { OAuth2Client } = require('google-auth-library');
+var client = new OAuth2Client('YOUR_CLIENT_ID');
 
 router.get('/form', function(req, res, next) {
-  // res.render('voter-registration.ejs');
-  if(req.session.loggedinUser){
-    res.render('voter-registration.ejs')
-  }else{
+  if (req.session.loggedinUser) {
+    res.render('voter-registration.ejs');
+  } else {
     res.redirect('/login');
   }
 });
 
+router.post('/google-signin', async function(req, res) {
+  var id_token = req.body.id_token;
+  var ticket = await client.verifyIdToken({
+    idToken: id_token,
+    audience: 'YOUR_CLIENT_ID',  // Specify the CLIENT_ID of the app that accesses the backend
+  });
+  var payload = ticket.getPayload();
+  var userid = payload['sub'];
+  var email = payload['email'];
+  var name = payload['name'];
 
-var getAge = require('get-age');
-
-
-var nodemailer = require('nodemailer');
-var rand=Math.floor((Math.random() * 10000) + 54);
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'election.blockchain@gmail.com',
-      pass: 'ajkprvy7'
+  // Check if the user already exists in your database
+  let sql = "SELECT * FROM users WHERE email = ?";
+  conn.query(sql, [email], (error, results) => {
+    if (error) {
+      return res.status(500).json({ success: false, message: 'Database query error' });
+    }
+    if (results.length > 0) {
+      // User exists, log them in
+      req.session.loggedinUser = true;
+      req.session.email = email;
+      res.json({ success: true });
+    } else {
+      // User does not exist, create a new record
+      let sql = "INSERT INTO users (email, name, google_id) VALUES (?, ?, ?)";
+      conn.query(sql, [email, name, userid], (error, results) => {
+        if (error) {
+          return res.status(500).json({ success: false, message: 'Database insert error' });
+        }
+        req.session.loggedinUser = true;
+        req.session.email = email;
+        res.json({ success: true });
+      });
     }
   });
-
-var account_address;
-var data;
-
-// app.use(express.static('public'));
-// //app.use('/css',express.static(__dirname+'public/css'));
-// //app.use(express.json());
-// app.use(express.urlencoded());
-
-router.post('/registerdata',function(req,res){
-    var dob=[];
-    data=req.body.aadharno;    //data stores aadhar no
-    console.log(data);
-    account_address=req.body.account_address;     //stores metamask acc address
-    //console.log(data);
-    let sql = "SELECT * FROM aadhar_info WHERE Aadharno = ?" ;   
-    conn.query(sql, data, (error, results, fields) => {
-        if (error) {
-          return console.error(error.message);
-        }
-        //console.log(results)
-        dob = results[0].Dob;
-        var email=results[0].Email;
-        age = getAge(dob);
-        is_registerd=results[0].Is_registered;
-        if (is_registerd!='YES')
-        {
-          if (age>=18)
-          {
-            var mailOptions = {
-                from: 'sharayuingale19@gmail.com',
-                to: email,
-                subject : "Please confirm your Email account",
-                text : "Hello, Your otp is "+rand	
-              };
-            transporter.sendMail(mailOptions, function(error, info){
-                if (error) {
-                  console.log(error);
-                } 
-                else {
-                  console.log('Email sent: ' + info.response);
-                }
-              });
-            res.render('emailverify.ejs');
-          }
-          else
-          {
-            res.send('You cannot vote as your age is less than 18');
-          }
-        }
-        else    //IF USER ALREADY REGISTERED
-        {
-          res.render('voter-registration.ejs',{alertMsg:"You are already registered. You cannot register again"});
-        }
-        
-    });
-
-    //console.log(dob);
-    //console.log(age);
-    //res.send("ok")
-    //console.log(dob);
-})
-
-router.post('/otpverify', (req, res) => {
-    var otp = req.body.otp;
-    if (otp==rand) 
-    {
-        var record= { Account_address: account_address, Is_registered : 'Yes' };
-        var sql="INSERT INTO registered_users SET ?";
-        conn.query(sql,record, function(err2,res2)
-          {
-              if (err2){
-             throw err2;
-            }
-              else{
-                var sql1="Update aadhar_info set Is_registered=? Where Aadharno=?";
-                var record1=['YES',data]
-                console.log(data)
-                conn.query(sql1,record1, function(err1,res1)
-                {
-                   if (err1) {
-                    res.render('voter-registration.ejs');
-                   }
-                   else{
-                    console.log("1 record updated");
-                    var msg = "You are successfully registered";
-                    // res.send('You are successfully registered');
-                    res.render('voter-registration.ejs',{alertMsg:msg});                 
-                  }
-                }); 
-               
-              }
-          }); 
-    }
-    else 
-    {
-       res.render('voter-registration.ejs',{alertMsg:"Session Expired! , You have entered wronge OTP "});
-    }
-})
-
-
-
-// router.get('/register',function(req,res){
-//     res.sendFile(__dirname+'/views/index.html')
-// });
-
-/*app.get('/signin_signup',function(req,res){
-    res.sendFile(__dirname+'/views/signup.html')
 });
 
-app.get('/signup',function(req,res){
-    console.log(req.body);
-    res.sendFile(__dirname+'/views/signup.html')
-});*/
+// Other routes and logic...
 
 module.exports = router;
