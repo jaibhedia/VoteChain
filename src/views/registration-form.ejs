@@ -9,13 +9,15 @@
     ></script>
     <link href="css/registration_from.css" rel="stylesheet" type="text/css" />
     <title>Sign in & Sign up Form</title>
+    <!-- Include the Google Platform Library -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+    <!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
+
   </head>
   <body>
     <section id="login_signUpForm">
-      <div
-        class="container"
-        id="container"
-      >
+      <div class="container" id="container">
         <div class="form-container sign-up">
           <div id="form">
             <div id="Applogo">
@@ -28,21 +30,28 @@
               placeholder="Name"
             />
             <input
-            id="sign-up-email"
+              id="sign-up-email"
               type="email"
               placeholder="Email"
             />
             <input
-            id="sign-up-pass"
+              id="sign-up-pass"
               type="password"
               placeholder="Password"
             />
             <p>
-              Already have a Account?
+              Already have an Account?
               <span id="login2"> Sign In</span>
             </p>
             <p id="signup_error"></p>
             <button id="user_signup">Sign Up</button>
+            <!-- Google Sign Up Button -->
+            <div id="g_id_onload"
+                 data-client_id="YOUR_CLIENT_ID"
+                 data-login_uri="YOUR_REDIRECT_URI"
+                 data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" data-type="standard"></div>
           </div>
         </div>
         <div class="form-container sign-in">
@@ -57,12 +66,12 @@
               placeholder="Email"
             />
             <input
-            id="sign-in-pass"
+              id="sign-in-pass"
               type="password"
               placeholder="Password"
             />
             <p>
-              Don't have a Account?<span id="register2"> Sign Up</span>
+              Don't have an Account?<span id="register2"> Sign Up</span>
             </p>
             <p id="singin_error"></p>
             <button id="user_signin">Sign In</button>
@@ -76,7 +85,7 @@
                 Please sign in to access your account, then click the 'Sign In'
                 button to proceed.
               </p>
-              <button class="hidden" id="login" >
+              <button class="hidden" id="login">
                 Sign In
               </button>
             </div>
@@ -86,7 +95,7 @@
                 Ready to get started? Click 'Sign Up' to create your account and
                 unlock all the features.
               </p>
-              <button class="hidden" id="register" >
+              <button class="hidden" id="register">
                 Sign Up
               </button>
             </div>
@@ -95,6 +104,35 @@
       </div>
     </section>
 
-       <script src="../js/script.js"></script>
+    <script>
+      function handleCredentialResponse(response) {
+        console.log('Encoded JWT ID token: ' + response.credential);
+        // Send the ID token to your server for verification and processing
+        fetch('/tokensignin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id_token: response.credential })
+        }).then(response => {
+          return response.json();
+        }).then(data => {
+          console.log(data);
+        });
+      }
+
+      window.onload = function() {
+        google.accounts.id.initialize({
+          client_id: 'YOUR_CLIENT_ID',
+          callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+          document.querySelector('.g_id_signin'),
+          { theme: 'outline', size: 'large' }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+      }
+    </script>
+    <script src="../js/script.js"></script>
   </body>
 </html>
