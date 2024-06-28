@@ -16,7 +16,7 @@ user_signin.addEventListener('click',()=>{
   console.log('click')
   if(sign_in_email.value.length>0 && sign_in_pass.value.length>0){
     let check=sign_in_email.value.split('@')
-    if(check[1]==="gamil.com" ||check[1]==="outlook.com"){
+    if(check[1]==="gmail.com" ||check[1]==="outlook.com"){
       signin_error.style.color="green"
       signin_error.textContent="success"
     }
@@ -34,7 +34,7 @@ user_signup.addEventListener('click',()=>{
   console.log('click')
   if(sign_up_email.value.length>0 && sign_up_pass.value.length>0 && sign_up_name.value.length>0){
     let check=sign_up_email.value.split('@')
-    if(check[1]==="gamil.com" ||check[1]==="outlook.com"){
+    if(check[1]==="gmail.com" ||check[1]==="outlook.com"){
      signup_error.style.color="green"
      signup_error.textContent="success"
     }
