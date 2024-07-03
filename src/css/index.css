@@ -152,6 +152,18 @@ p {
 .split.right:hover p {
   font-size: var(--default-font-size);
 }
+.copyrightFooter {
+  all: unset;
+  color: white;
+  position: absolute;
+  opacity: 0.5;
+  bottom: 10px; 
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 300px;
+  text-align: center;
+}
 
 @media (max-width: 800px) {
   h1 {
