@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+# This service runs a PostgreSQL database
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: mydatabase
+    volumes:
+      - db-data: /var/lib/postgresql/data
+
+  # This service runs the Node.js backend application
+  backend:
+    build: .
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: mydatabase
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+
+# Define named volumes to persist data
+volumes:
+  db-data: 
+
+#to run the docker-compose.yml write the command docker-compose up --build
