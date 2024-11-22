@@ -60,3 +60,7 @@ singin2.addEventListener('click',()=>{
 register.addEventListener('click',()=>{
   container.classList.add('active')
 })
+
+
+    
+    
